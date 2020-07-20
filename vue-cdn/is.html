@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="app">
+       <ul>
+         <!-- <my-li></my-li> -->
+         <li is="my-li"></li>
+       </ul>
+       <!-- 外面无论什么标签包裹,最后渲染时都会被覆盖 -->
+       <!-- is值不是true/false,而是注册的组件名,根据组件名不同,实现切换 -->
+      <p :is="mycom"></p>
+       <button v-on:click="changeStatus">改变</button>
+   </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    Vue.component('my-li',{
+        render:h=>h('li','沙发斯蒂芬')
+        // template:'<li>水电费空间</li>'
+    })
+    Vue.component('my-div1',{
+        render:h=>h('div','哈哈1')
+       
+    })
+    Vue.component('my-div2',{
+        render:h=>h('h4','哈哈2')
+       
+    })
+  let vm =new Vue({
+     el:'#app',
+     data(){
+         return {
+            mycom:'my-div1',
+         }
+     },
+     methods:{
+        changeStatus() {
+            this.mycom = 'my-div2'
+        }
+     }
+  })
+</script>

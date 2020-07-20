@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  //函数作用域在函数定义时就已经确定了
+  //foo是在全局作用域中定义的，无论在何处调用它的作用域都不会发生变化，都是全局作用域（根据词法作用域来看）。所以会找响应的全局中的变量a，若没找到就会输出undefined。
+  function foo() {
+    console.log(a);
+  }
+  function bar() {
+    var a = 3;
+    foo(); //2
+  }
+  var a = 2;
+  bar();
+</script>

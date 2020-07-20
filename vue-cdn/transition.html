@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .fade-enter-active,
+      .fade-leave-active {        
+        transition: color 1s ease;        
+      }
+      .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        color:red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- appear属性:进入页面就有过渡效果 -->
+      <transition name="fade" appear>
+        <div class="content" v-show="isShow">sdfsdfdsdf</div>
+      </transition>
+      <button 
+      @click="changeStatus"
+      >改变</button>
+    </div>
+  </body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  let VM = new Vue({
+    el: "#app",
+    data() {
+      return {
+        content: "的凤凰健康和健康",
+        isShow:false
+      }
+    },
+    created() {
+      this.isShow = true;
+    },
+    methods:{
+      changeStatus() {
+           this.isShow = !this.isShow
+      }
+    }
+  });
+</script>

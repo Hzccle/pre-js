@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app" >
+      <com-test id="1" :attr1="info" attr2="建行卡"   v-bind='$attrs'></com-test>
+      <com-test1  info="dfddf"></com-test1>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    Vue.component('com-test',{
+        props:{
+            attr1:{
+
+            },
+            test:{
+
+            }
+        },
+        render:(h)=>h('div',{
+            domProps:{
+                innerHTML:'爱你爱你'
+            }
+        }),
+        template:'<com-test1></com-test1>',
+        mounted(){
+            //父组件在子组件上设置的属性（除了prop传递的属性、class 和 style ）
+            // console.log(this.$attrss);
+            console.log(this.$attrs);
+            
+            
+        }
+    })
+    Vue.component('com-test1',{
+        props:{
+           
+        },
+        render:(h)=>h('h4',{
+            domProps:{
+                innerHTML:'sdfddsfs'
+            }
+        }),
+       
+        mounted(){
+            //父组件在子组件上设置的属性（除了prop传递的属性、class 和 style ）
+            // console.log(this.$attrss);
+            console.log(this.$attrs);
+            
+            
+        }
+    })
+    let vm = new Vue({
+        el:'#app',        
+        data() {
+            return {
+             info:'ddd'
+            }
+        }
+    })
+   
+    
+</script>

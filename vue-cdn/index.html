@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div >{{hello}}</div>
+        <!-- 注意动态添加style和class写法 -->
+        <div :style="{ color:obj.textColor }">{{obj.name}}</div>
+        <div>{{ reversedMessage }}</div> 
+        <div v-for="(item,index) in arr" :key="index">{{item.name}}</div>      
+        <button @click="changeText">改变</button>
+    </div>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let vuedemo = new Vue({
+        el: '#app',
+        data: {
+            hello: '清晨我上马',
+            obj:{
+                name:'liming',
+                age:18
+            },
+            arr:[
+                {
+                    id:1,
+                    name:'li'
+                },
+            ]
+        },
+        methods: {
+            changeText() {
+                this.hello = '但是副科级'
+                // console.log(this.reversedMessage);
+                this.obj.name='梨花'
+            }
+        },
+        computed: {
+                // 计算属性的 getter
+            reversedMessage: function () {
+                // `this` 指向 vm 实例
+                return this.hello.split('').reverse().join('')
+            }
+        },
+        watch:{
+            hello:{
+                handler(oldVal,newVal){
+                    // console.log(oldVal,newVal);                    
+                },
+                immediate:true
+            },
+            obj:{
+                handler(oldVal,newVal){
+                  console.log(oldVal.name,newVal)
+                    
+                },
+                immediate:true,
+                deep:true //深度监测对象属性,不设置的话,对象属性改变监测不到
+            }
+           
+            
+        },
+        created() {
+                     
+        },
+        mounted() {
+            Vue.set(this.obj,'textColor','red');
+            var len = this.arr.length;
+            Vue.set(this.arr,len,{id:3,name:'李ID'});
+            
+        }
+
+    })
+    // console.log(vuedemo.reversedMessage);
+   /*---------------------------------------------------------------*/
+    // let initcomponent = Vue.extend({
+    //     template:'<p>{{info}}</p>',
+    //     data() {
+    //         return {
+    //             info:'哈哈哈哈'
+    //         }
+    //     }
+    // })
+    // new initcomponent().$mount('#app')//会覆盖#app
+    
+</script>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .clearfix::after{
+            content:'';
+            clear: both;
+            height: 0;
+            display: block;
+            visibility: hidden;
+        }
+        .wrapper{
+            width: 100%;
+            height: 40px;
+            overflow: hidden;
+        }
+        .scrollWrapper{
+            width: 100%;
+            height: 40px;
+            line-height: 40px; 
+            position: relative;   
+            overflow-y: hidden;
+
+        }
+        .cont{
+            width: 100%;
+            height: 100%;
+            background-color: aqua;
+            color: #fff;
+            /* float: left; */
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .del,.reset{
+            width: 100px;
+            height: 40px;
+            background-color: red;
+            color: #fff;
+            text-align: center;
+            /* float: right; */
+            /* width: 0; */
+            position: absolute;
+            right: -100px;
+            top: 0;
+            transition: all 1s;
+        }
+        .del{width: 0;}
+        .reset{
+            right: -200px;
+            background-color: salmon;
+        }
+        .del-res-animate{
+            animation: delcomWid 1s ease both;
+        }
+        .del-animate{
+            animation: comWid 1s ease both;
+        }
+        @keyframes comWid {
+            from{
+                width: 0;
+            }
+            to{
+                width: 100px;
+            }
+        }
+        @keyframes delcomWid {
+            from{
+                width: 100px;
+            }
+            to{
+                width: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="scrollWrapper clearfix">
+            <div class="cont"></div>           
+            <div class="del">删除</div>
+            <div class="reset">重置</div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+     var Scrollwrapper = document.getElementsByClassName('scrollWrapper')[0]
+     var startX,endX;
+     Scrollwrapper.addEventListener('touchstart',function(e){
+        //  e.preventDefault()
+       startX = e.targetTouches[0].pageX;              
+     })
+     Scrollwrapper.addEventListener('touchmove',function(e){
+        //  e.preventDefault()    
+        endX = e.targetTouches[0].pageX;
+        console.log(endX-startX);
+        
+        if((endX-startX)>-20){
+          document.getElementsByClassName('del')[0].classList.add('del-animate')       
+        }   
+        if((endX-startX)>20){                       
+          document.getElementsByClassName('del')[0].classList.remove('del-animate')
+          document.getElementsByClassName('del')[0].classList.add('del-res-animate')
+        //   document.getElementsByClassName('cont')[0].style.transform = "translateX("+(endX-startX)+'px'+")"
+        //   document.getElementsByClassName('reset')[0].classList.add('reset-animate')
+        // return;
+        }           
+     })
+
+</script>

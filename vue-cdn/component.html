@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+      <div class="info">{{info}}</div>
+      <!-- <com-test></com-test> -->
+      <render-com></render-com>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //全局注册的行为必须在根 Vue 实例 (通过 new Vue) 创建之前发生
+//     Vue.component('com-test',{
+//       data() {
+//           return {
+//               name:'理你个'
+//           }
+//       },
+//       template:'<div>{{name}}</div>'
+//   })
+
+/*----------------------------------------------------------------------------*/
+     Vue.component('render-com',{
+        //  render:function(h){
+        //      return h('h1')
+        //  }
+        render:h=>h('h1',{
+            attrs:{
+                value:'4',
+                id:'3'
+            },
+            style:{
+                'font-size':'14px',
+                cursor:'pointer'
+            },
+            on:{
+                click:()=>{
+                    console.log(1111);
+                    
+                }
+            },
+            domProps:{
+                innerHTML:'爱你爱你'
+            }
+        })
+     })
+  let vm = new Vue({
+      el:'#app',
+      data() {
+          return {
+             info:'哈哈哈'
+          }
+      }
+  })
+  
+</script>
