@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+
+    <input type="file" id="inputFile">
+    <img src="" alt="" id="img">
+</body>
+</html>
+<script>
+    //<canvas>图像转成一个 Blob 对象，默认类型是image/png,格式如下
+
+    //canvas.toBlob(callBack,mimetype,quality)
+    //实例
+   // canvas.toBlob(function(blob){},'image/jpeg',0.95)
+
+   /*
+    1-callback :它接受生成的blob对象作为参数
+    2-mimetype:图像MIMETYPE类型,默认是image/png
+    3-quality:图像质量,只对jpeg,webp类型图像有用
+
+    注意:
+     该方法没有返回值
+   */
+
+   //案例
+   let canvas = document.getElementById('canvas')
+   function blobImg (blob) {
+       var img = document.createElement('img')
+       //URL.createObjectURL()方法会根据传入的参数创建一个指向该参数对象的URL. 这个URL的生命仅存在于它被创建的这个文档里. 新的对象URL指向执行的File对象或者是Blob对象
+       var url = URL.createObjectURL(blob);
+
+       img.onload = function () {
+       //URL.revokeObjectURL()方法会释放一个通过URL.createObjectURL()创建的对象URL. 当你要已经用过了这个对象URL,然后要让浏览器知道这个URL已经不再需要指向对应的文件的时候,就需要调用这个方法.当页面被关闭,浏览器会自动释放它,但是为了最佳性能和内存使用,当确保不再用得到它的时候,就应该释放它
+
+           URL.revokeObjectURL(url)
+       }
+       img.src = url;
+
+       document.body.appendChild (img)
+   }
+
+   canvas.toBlob(blobImg)
+ /*-----------------------------------------------------------------*/
+
+//URL.createObjectURL(file)例子
+ let inputFile = document.getElementById('inputFile')
+ let img = document.getElementById('img')
+ inputFile.addEventListener('change',function () {
+    
+     let file = this.files[0]
+     img.onload = function () {
+         window.URL.revokeObjectURL(file)
+     }
+     img.src = window.URL.createObjectURL(file)
+     console.log(img);
+ })
+   
+
+   
+
+</script>

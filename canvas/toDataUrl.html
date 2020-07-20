@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="600" height="300" id="canvas"></canvas>
+</body>
+</html>
+<script>
+    // var canvas = document.getElementById('canvas')
+    // let ctx = canvas.getContext('2d')
+    // function coverCanvasImg (canvas) {
+    //     let img = new Image()
+    //     // img.onload = function () {
+    //     //     return img
+    //     // }
+    //     img.src = canvas.toDataURL('image/jpeg',.8)
+    //     console.log(img);
+    //     return img;
+    // }
+    // coverCanvasImg(canvas)
+
+    /* Canvas 数据转为 Data URI 格式的图像。*/
+    /**
+     canvas.toDataURL(type, quality)
+     toDataURL(type,quality)接受两个参数
+     type:表示图像格式,默认image/png,另一个可用image/jpeg,chrome还可以使用image/webp
+     quality:浮点数,0-1,不是图片质量系数,默认0.92
+
+     该方法的返回值是一个 Data URI 格式的字符串
+    */
+    function getBase64 (url) {
+      let img = new Image(),dataUrl='';
+      img.src = url;
+      img.onload = function () {
+          let canvas = document.getElementById('canvas'),
+
+              width = img.width,
+
+              height = img.height;
+
+          canvas.width = width;
+
+          canvas.height = height;
+
+          let ctx = canvas.getContext('2d')
+
+          ctx.drawImage(img,0,0,width,height)  
+
+          dataUrl = canvas.toDataURL('image/png',.8)  
+
+         return dataUrl
+      }
+
+      return dataUrl
+
+    }
+    //由于本地权限,本地图片无法处理
+    let imgUrl = getBase64('./imgs/timg.jpg')
+    console.log(imgUrl);
+</script>

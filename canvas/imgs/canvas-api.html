@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="800"></canvas>
+</body>
+</html>
+<script>
+    let canvas = document.getElementById('canvas')
+    let ctx = canvas.getContext('2d')
+
+     //1-stroke():
+    //stroke() 方法会实际地绘制出通过 moveTo() 和 lineTo() 方法定义的路径。默认颜色是黑色。
+    ctx.moveTo(0,0)
+    ctx.lineTo(50,40)
+    ctx.strokeStyle = 'red'//单纯颜色设置
+
+    //创建线条渐变
+     let gradinet = ctx.createLinearGradient(0,0,50,40)
+     gradinet.addColorStop(0,'yellow')
+     gradinet.addColorStop(1,'red')
+     ctx.strokeStyle = gradinet;
+     ctx.stroke()
+
+    //2-绘制矩形边框
+    let gradientRect = ctx.createLinearGradient(100,50,250,100) //横向渐变 保持y轴不变,x轴加
+    // let gradientRect = ctx.createLinearGradient(100,50,100,150) //纵向渐变 保持x轴不变,y轴加
+    // let gradientRect = ctx.createLinearGradient(100,50,250,150) //斜向渐变
+    gradientRect.addColorStop(0,'blue ')
+    gradientRect.addColorStop(1,'red ')
+    ctx.strokeStyle = gradientRect
+    // ctx.lineWidth = 4; //设置线宽
+    ctx.strokeRect(100,50,150,100)
+
+    //3-绘制矩形填充
+     let gradientFill = ctx.createLinearGradient(200,200,300,200)
+     gradientFill.addColorStop(0,'green')
+     gradientFill.addColorStop(1,'yellow')
+     ctx.fillStyle= gradientFill
+     ctx.fillRect(200,200,100,100)
+
+     //4-绘制圆形
+     ctx.beginPath()
+     ctx.moveTo(350,350)
+     ctx.arc(350,350,100,0,Math.PI/180 * 360,false)
+     ctx.closePath()
+     ctx.strokeStyle='pink'
+     ctx.stroke()
+</script>
