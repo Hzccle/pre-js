@@ -45,9 +45,16 @@
 
      //4-绘制圆形
      ctx.beginPath()
-     ctx.moveTo(350,350)
+    //  ctx.moveTo(350,350) //画圆时,会有其实现
      ctx.arc(350,350,100,0,Math.PI/180 * 360,false)
      ctx.closePath()
      ctx.strokeStyle='pink'
+     ctx.stroke()
+
+     //5-画扇形
+     ctx.beginPath()
+     ctx.arc(400,400,100,Math.PI/180 * 60,Math.PI/180 * 120,true)
+     ctx.closePath
+     ctx.strokeStyle = '#000'
      ctx.stroke()
 </script>
