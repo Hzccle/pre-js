@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+</html>
+<script>
+    async function draw () {
+        let canvas = document.getElementById('canvas')
+
+        let ctx = canvas.getContext('2d')
+        ctx.fillStyle='red'
+        ctx.globalAlpha = 0.5
+
+        ctx.fillRect(0,0,100,100)
+
+        ctx.globalAlpha = 1 //只对于其下面的图像其效果,对其之前已绘制的不起效果
+        
+        ctx.lineTo(50,50)
+        
+        ctx.fillStyle='#000'
+
+        ctx.arc(50,50,30,0,Math.PI*2,true)
+      
+        ctx.fill()//填充,如果路径没有闭合会自动闭合,区别于stroke(),不会自动闭合
+    }
+    draw()
+</script>
