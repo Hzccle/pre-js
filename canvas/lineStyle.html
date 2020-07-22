@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="800">您的浏览器不支持canvas!</canvas>
+</body>
+</html>
+<script>
+    let canvas = document.getElementById('canvas')
+    let ctx = canvas.getContext('2d')
+
+    async function draw () {                
+        ctx.beginPath()
+        ctx.moveTo(100,100)
+        ctx.lineTo(200,100)
+        ctx.lineWidth = 5
+        ctx.strokeStyle = 'red'
+        ctx.lineCap = 'button' //square button round  属性 lineCap 的值决定了线段端点显示的样子
+        ctx.stroke()        
+
+    }
+    draw()
+
+    //lineJoin
+    lineJoin()
+    async function lineJoin () {
+        ctx.beginPath()
+        ctx.moveTo(150,150)
+        ctx.lineTo(200,200)
+        ctx.lineTo(250,150)
+        ctx.lineTo(300,200)
+        ctx.lineTo(350,150)
+        ctx.lineJoin = 'round'   //round, bevel 和 miter
+        ctx.lineWidth = 10
+        ctx.strokeStyle = 'blue'
+        ctx.stroke()
+    }
+
+    //虚线 setLineDash 方法和 lineDashOffset 属性来制定虚线样式
+</script>
