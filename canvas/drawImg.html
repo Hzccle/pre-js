@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+</html>
+<script>
+    draw()
+    async function draw() {
+        var canvas = document.getElementById('canvas')
+
+        var ctx = canvas.getContext('2d')
+
+        var img = new Image()
+
+        img.src = './imgs/timg.jpg'
+
+        img.onload = function () {
+            canvas.width = img.width
+            canvas.height = img.height
+
+            ctx.drawImage(img,0,0)
+
+            document.body.appendChild(img)
+
+        }
+    }
+</script>

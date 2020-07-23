@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="200">您的浏览器不支持canvas</canvas>
+</body>
+</html>
+<script>
+    let canvas = document.getElementById('canvas')
+    let ctx = canvas.getContext('2d')
+    console.log(canvas.width,canvas.height,canvas.clientWidth);
+    ctx.font = 'bold  30px Arial'//固定顺序
+    ctx.textAlign  = 'center' // 和css text-align有区别,以中轴线划分
+    ctx.fillStyle = 'red'
+    // ctx.fillText('圣诞节疯狂',100,100)
+    ctx.strokeStyle = 'blue'
+    
+    var myGradient = ctx.createLinearGradient(0, 0, canvas.width, 0); 
+
+    myGradient.addColorStop(0, "blue"); 
+
+    myGradient.addColorStop(1, "red");
+    ctx.fillStyle = myGradient
+    ctx.strokeStyle = myGradient
+    ctx.fillText('圣诞节疯狂',canvas.width/2,canvas.height/2)
+    // ctx.strokeText('地方好借好还',100,100)
+    /*
+    注意:fillText/strokeText不支持断行,所有文本在一行,如果想要换行,需要多次调用
+    */
+</script>

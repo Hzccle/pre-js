@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+</html>
+<script>
+    //getImageData,putImageData getImageData方法可以用来读取Canvas的内容，返回一个对象，包含了每个像素的信息。
+    var canvas = document.getElementById('canvas')
+
+    var ctx = canvas.getContext('2d')
+
+    var img = new Image()
+
+    img.onload = function () {
+        canvas.width = img.width
+
+        canvas.height = img.height
+
+        ctx.drawImage(img,0,0,canvas.width/2,canvas.height/2)
+    }
+    img.src = './imgs/timg.jpg'
+
+    let res = ctx.getImageData(0,0,canvas.width,canvas.height).data
+    console.log(res);
+</script>
