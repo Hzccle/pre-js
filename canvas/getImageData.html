@@ -1,31 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 </head>
+
 <body>
     <canvas id="canvas"></canvas>
 </body>
+
 </html>
 <script>
     //getImageData,putImageData getImageData方法可以用来读取Canvas的内容，返回一个对象，包含了每个像素的信息。
-    var canvas = document.getElementById('canvas')
+    /*
+        imageData对象有一个data属性，它的值是一个一维数组。该数组的值，依次是每个像素的红、绿、蓝、alpha通道值，因此该数组的长度等于 图像的像素宽度 x 图像的像素高度 x 4，每个值的范围是0–255。
+        这个数组不仅可读，而且可写，因此通过操作这个数组的值，就可以达到操作图像的目的。修改这个数组以后，使用putImageData方法将数组内容重新绘制在Canvas上。
+      */
+    var canvas = document.getElementById("canvas");
 
-    var ctx = canvas.getContext('2d')
+    var ctx = canvas.getContext("2d");
 
-    var img = new Image()
+    var img = new Image();
 
     img.onload = function () {
-        canvas.width = img.width
+        canvas.width = img.width;
 
-        canvas.height = img.height
+        canvas.height = img.height;
 
-        ctx.drawImage(img,0,0,canvas.width/2,canvas.height/2)
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+    };
+    img.src = "./imgs/timg.jpg";
+
+    let res = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+    let grayRes = grayscale(res);
+
+    ctx.putImageData(grayRes, 0, 0);
+
+    function grayscale(pixels) {
+        var d = pixels.data;
+         console.log(d[0],d[1],d[2]);
+        for (var i = 0; i < d.length; i += 4) {
+            var r = d[i];
+            var g = d[i + 1];
+            var b = d[i + 2];
+            d[i] = d[i + 1] = d[i + 2] = (r + g + b) / 3;
+        }
+        console.log(pixels);
+        return pixels;
     }
-    img.src = './imgs/timg.jpg'
-
-    let res = ctx.getImageData(0,0,canvas.width,canvas.height).data
-    console.log(res);
 </script>
