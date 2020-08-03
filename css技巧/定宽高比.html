@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content{display: flex;width: 100px;background-color: tomato;color: #fff;}
+        .content:after{
+            content:'';
+            padding-top:100%; /*padding是相对于宽度的*/
+        }
+    </style>
+</head>
+<body>
+    <!-- css实现定宽高比的原理：padding的百分比是相对于其包含块的宽度，而不是高度 -->
+    <div class="wrapper">
+        <div class="content">收到回复客户库科技和</div>
+    </div>
+</body>
+</html>

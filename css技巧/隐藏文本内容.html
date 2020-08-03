@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .wrapper{width: 500px;height: 300px;background-color: tomato;color: #fff;transition: all 1s;font-size: 16px;}
+      /*
+        1-text-indent:-2000px;
+        2-font-size:0      
+      */
+    </style>
+</head>
+<body>
+    <div class="wrapper">适得府君书空间和科技</div>
+    <button>消失</button>
+</body>
+</html>
+<script>
+    let btn = document.getElementsByTagName('button')[0]
+
+    btn.addEventListener('click',()=>{
+        var wrapper = document.getElementsByClassName('wrapper')[0]
+       /* wrapper.style.fontSize = '0' */ /*谷歌有点问题:不会立刻消失*/
+        wrapper.style.textIndent = '-20000px'
+    })
+</script>

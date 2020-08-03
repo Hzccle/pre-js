@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        html,body{
+            /* width: 100%;
+            height:100%; */
+            padding: 0;
+            margin: 0;
+            display: block;
+        }
+        body{overflow-y: scroll;}
+        .wrapper{
+            width: 100%;
+            height:100%;
+        }
+        .content{
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            padding: 100px;
+            text-align: center;
+        }
+        .modal{
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            z-index: 500;
+            background-color: rgba(0,0,0,.3);
+        }
+        .modal-cont{
+            width: 200px;
+            height: 300px;
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+            position: relative;
+        }
+        #close{
+            padding: 10px;
+            right: 0;
+            top: 0;
+            position: absolute;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="modal">
+            <div class="modal-cont">
+                <span id="close">x</span>
+               <p> 是否健康路路口时间来看解放路口时看到了连接</p>
+            </div>
+        </div>
+        <div class="content">适得府君书可贷款福克斯的看法科技科技时代科技发挥空间看几点上课炬华科技好看就开始会计师</div>
+    </div>
+</body>
+</html>
+<script>
+    var modal = document.getElementsByClassName('modal')[0]
+    let close = document.getElementById('close')
+    close.addEventListener('click',()=>{
+      
+        modal.style.display = 'none'
+    })
+</script>
